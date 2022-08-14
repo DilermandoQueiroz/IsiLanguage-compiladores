@@ -45,6 +45,7 @@
                 <configuration>
                     <mainClass>br.com.professorisidro.isilanguage.main.MainClass</mainClass>
                     <arguments>
+                        <!-- Substituir o arquivo para ser compilado aqui -->
                         <argument>input.isi</argument>
                     </arguments>
                 </configuration>

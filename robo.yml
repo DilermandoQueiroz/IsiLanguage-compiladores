@@ -1,2 +1,0 @@
-run:
-  command: mvn exec:java
