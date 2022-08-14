@@ -21,7 +21,7 @@
             <plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
-                <version>4.3</version>
+                <version>4.7.1</version>
                 <executions>
                     <execution>
                         <id>antlr</id>
@@ -30,6 +30,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <arguments>
+                        <argument>-package</argument>
+                        <argument>br.com.professorisidro.isilanguage.parser</argument>
+                    </arguments>
+                    <outputDirectory>${basedir}/src/main/java/br/com/professorisidro/isilanguage/parser</outputDirectory>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

@@ -740,6 +740,7 @@ public class IsiLangParser extends Parser {
 			setState(94);
 			match(OPREL);
 			 _exprDecision += _input.LT(-1).getText(); 
+					
 			setState(96);
 			_la = _input.LA(1);
 			if ( !(_la==ID || _la==NUMBER) ) {
