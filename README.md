@@ -34,3 +34,5 @@ Para executar o projeto, basta realizar o comando `mvn exec:java`. O arquivo que
                 </configuration>
                 ...
 ```
+
+Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `mvn compile`, que automaticamente irá regerar os arquivos na pasta `parser` do projeto.
