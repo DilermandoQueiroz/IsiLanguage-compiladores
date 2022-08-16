@@ -46,8 +46,8 @@ Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `
 - [Nome], [RA]
 
 ## Checklist
-[x] Possuir 2 tipos de dados (pelo menos 1 String) 	
-- [x] Possuir a instrução de decisão (if/else)	
+- [] Possuir 2 tipos de dados (pelo menos 1 String) 	
+- [] Possuir a instrução de decisão (if/else)	
 - [ ] Pelo menos 1 estrutura de repetição	
 - [ ] Verificar Atribuições com compatibilidade de tipos (semântica) 	
 - [ ] Possuir operações de Entrada e Saída	
