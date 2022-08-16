@@ -45,9 +45,9 @@ Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `
 - [Nome], [RA]
 - [Nome], [RA]
 
-## Checklist
-- [] Possuir 2 tipos de dados (pelo menos 1 String) 	
-- [] Possuir a instrução de decisão (if/else)	
+## Checklist (Marcar o que foi feito)
+- [ ] Possuir 2 tipos de dados (pelo menos 1 String) 	
+- [ ] Possuir a instrução de decisão (if/else)	
 - [ ] Pelo menos 1 estrutura de repetição	
 - [ ] Verificar Atribuições com compatibilidade de tipos (semântica) 	
 - [ ] Possuir operações de Entrada e Saída	
@@ -55,4 +55,7 @@ Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `
 - [ ] Verificar declaração de variávies (não usar variáveis que não foram declaradas)	
 - [ ] Verificar se há variáveis declaradas e não-utilizadas (warning)	
 - [ ] Geração de pelo menos 1 linguagem destino (C/Java/Python)
->>>>>>> Stashed changes
+
+## Vídeo do YouTube (alterar link do vídeo)
+[Projeto de Compiladores](https://www.youtube.com/watch?v=_r3fT7oFNxw&t=1896s)
+
