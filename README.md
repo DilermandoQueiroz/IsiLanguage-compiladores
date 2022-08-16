@@ -57,5 +57,7 @@ Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `
 - [ ] Geração de pelo menos 1 linguagem destino (C/Java/Python)
 
 ## Vídeo do YouTube (alterar link do vídeo)
-[Projeto de Compiladores](https://www.youtube.com/watch?v=_r3fT7oFNxw&t=1896s){target="_blank"}
+[Projeto de Compiladores](https://www.youtube.com/watch?v=_r3fT7oFNxw&t=1896s)
 
+- Link para um vídeo do Youtube (publique-o como não-listado) de no máximo 10 minutos explicando como está estruturado o projeto e quais decisões foram tomadas na implementação
+- Inclua também no vídeo exemplos de novos programas que você testou no seu compilador.
