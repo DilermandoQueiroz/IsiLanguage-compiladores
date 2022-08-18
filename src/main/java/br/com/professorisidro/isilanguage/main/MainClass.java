@@ -37,14 +37,12 @@ public class MainClass {
 			parser.exibeComandos();
 
 			parser.generateCode();
-
 		} catch (IsiSemanticException ex) {
 			System.err.println("Semantic error - " + ex.getMessage());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.err.println("ERROR " + ex.getMessage());
 		}
-
 	}
 
 }

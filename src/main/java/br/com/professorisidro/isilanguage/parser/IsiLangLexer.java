@@ -95,6 +95,7 @@ public class IsiLangLexer extends Lexer {
 		private String _varValue;
 		private IsiSymbolTable symbolTable = new IsiSymbolTable();
 		private IsiSymbol symbol;
+
 		private IsiProgram program = new IsiProgram();
 		private ArrayList<AbstractCommand> curThread;
 		private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();
@@ -106,19 +107,19 @@ public class IsiLangLexer extends Lexer {
 		private ArrayList<AbstractCommand> listaTrue;
 		private ArrayList<AbstractCommand> listaFalse;
 		
-		public void verificaID(String id){
-			if (!symbolTable.exists(id)){
-				throw new IsiSemanticException("Symbol "+id+" not declared");
+		public void verificaId(String id) {
+			if (!symbolTable.exists(id)) {
+				throw new IsiSemanticException("Symbol " + id + " not declared");
 			}
 		}
 		
-		public void exibeComandos(){
-			for (AbstractCommand c: program.getComandos()){
+		public void exibeComandos() {
+			for (AbstractCommand c : program.getComandos()) {
 				System.out.println(c);
 			}
 		}
 		
-		public void generateCode(){
+		public void generateCode() {
 			program.generateTarget();
 		}
 
