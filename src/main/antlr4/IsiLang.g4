@@ -100,7 +100,7 @@ bloco:
 	}
 	(cmd)+;
 
-cmd: cmdleitura | cmdescrita | cmdattrib | cmdselecao;
+cmd: cmdleitura | cmdescrita | cmdattrib | cmdselecao | cmdenquanto;
 
 cmdleitura:
 	'leia'
@@ -165,6 +165,25 @@ cmdselecao:
 			stack.peek().add(cmd);
 		}
 	)?;
+
+cmdenquanto:
+	'enquanto' { _exprContent = ""; }
+	AP
+	expr
+	OPREL { _exprContent += _input.LT(-1).getText(); }
+	expr
+	FP { _exprDecision = _exprContent; }
+	ACH {
+		curThread = new ArrayList<AbstractCommand>(); 
+		stack.push(curThread);
+	}
+	(cmd)+
+	FCH {
+		ArrayList<AbstractCommand> comandos = stack.pop()
+		CommandEnquanto cmdEnquanto = new CommandEnquanto(_exprDecision, comandos);
+        stack.peek().add(cmdEnquanto);
+	}
+	;
 
 expr:
 	termo (OP { _exprContent += _input.LT(-1).getText();} termo)*;
