@@ -4,12 +4,21 @@ public class MainClass {
 		Scanner _key = new Scanner(System.in);
 		double  a;
 		double  b;
-		String  t1;
+		double  c;
+		double  d;
+		System.out.println("Programa Teste");
+		System.out.println("Digite A");
 		a= _key.nextDouble();
+		System.out.println("Digite B");
 		b= _key.nextDouble();
-		a = 1+2*3/b;
-		if (a>b) {
-System.out.println(a);}else {
-System.out.println(b);}
+		if (a<b) {
+c = a+b;}else {
+c = a-b;}
 
-	}}
+		System.out.println("C e igual a ");
+		System.out.println(c);
+		d = c*a+b;
+		System.out.println("D e igual a ");
+		System.out.println(d);
+	}
+}

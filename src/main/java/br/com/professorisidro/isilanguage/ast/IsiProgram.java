@@ -25,7 +25,7 @@ public class IsiProgram {
 		for (AbstractCommand command : comandos) {
 			str.append("\t\t" + command.generateJavaCode() + "\n");
 		}
-		str.append("\t}");
+		str.append("\t}\n");
 		str.append("}");
 
 		try {

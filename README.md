@@ -1,5 +1,33 @@
 # IsiLanguage
 
+## Checklist
+
+### Elementos padrão
+
+- [x] Possuir 2 tipos de dados (pelo menos 1 String)  
+- [x] Possuir a instrução de decisão (if/else)
+- [ ] Pelo menos 1 estrutura de repetição
+- [ ] Verificar Atribuições com compatibilidade de tipos (semântica)  
+- [x] Possuir operações de Entrada e Saída
+- [x] Aceitar números decimais  
+- [x] Verificar declaração de variávies (não usar variáveis que não foram declaradas)
+- [ ] Verificar se há variáveis declaradas e não-utilizadas (warning)
+- [x] Geração de pelo menos 1 linguagem destino (C/Java/Python)
+
+### Elementos adicionais
+
+- [ ] Nova instrução para Switch/Case (escolha/caso)
+- [ ] Mais tipos de dados
+- [ ] Inclusão de novos operadores (exponenciação, raiz quadrada, logaritmos)
+- [ ] Geração de código para mais de uma linguagem diferente
+
+### Elementos extraordinários
+
+- [ ] Criar um interpretador a partir da AST
+- [ ] Criar um editor com Highlights de palavras reservadas (editor Desktop)
+- [ ] Criar um editor Web para o código
+- [ ] Tornar o compilador um Webservice para receber programas e enviar respostas de possíveis erros
+
 ## Pré-requisitos
 
 - Java 8

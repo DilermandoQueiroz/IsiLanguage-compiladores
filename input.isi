@@ -1,21 +1,28 @@
 programa
 
-  numero a, b;
-  texto  t1;
+numero a, b, c, d.
 
-  leia(a);
-  leia(b);
-  
-  a = 1 + 2 * 3 / b;
-  
+escreva("Programa Teste").
+escreva ("Digite A").
+leia (a).
+escreva ("Digite B").
+leia (b).
 
-  se ( a > b ) {
-     escreva (a);
-  }
-  senao {
-     escreva (b);
-  }
-  
-  
+se (a<b) entao
+{
+    c := a + b.
+} 
+senao
+{
+    c := a - b.
+}
 
-fimprog;
+escreva ("C e igual a ").
+escreva (c).
+
+d := c * a + b.
+
+escreva ("D e igual a ").
+escreva (d).
+
+fimprog.
