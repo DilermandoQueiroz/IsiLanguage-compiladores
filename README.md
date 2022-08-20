@@ -6,7 +6,7 @@
 
 - [x] Possuir 2 tipos de dados (pelo menos 1 String)  
 - [x] Possuir a instrução de decisão (if/else)
-- [ ] Pelo menos 1 estrutura de repetição
+- [x] Pelo menos 1 estrutura de repetição
 - [ ] Verificar Atribuições com compatibilidade de tipos (semântica)  
 - [x] Possuir operações de Entrada e Saída
 - [x] Aceitar números decimais  
