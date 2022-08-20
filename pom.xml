@@ -53,7 +53,7 @@
                     <mainClass>br.com.professorisidro.isilanguage.main.MainClass</mainClass>
                     <arguments>
                         <!-- Substituir o arquivo para ser compilado aqui -->
-                        <argument>input.isi</argument>
+                        <argument>inputs/input.isi</argument>
                     </arguments>
                 </configuration>
             </plugin>

@@ -1,0 +1,23 @@
+programa
+
+numero a, b, c, d.
+
+escreva("Programa Teste").
+escreva ("Digite A").
+leia (a).
+escreva ("Digite B").
+leia (b).
+
+enquanto (a<b)
+{
+    escreva ("A = ").
+    escreva (a).
+    a := a + 1.
+}
+
+escreva ("A = ").
+escreva (a).
+escreva ("B = ").
+escreva (b).
+
+fimprog.

@@ -8,8 +8,8 @@ public class CommandEnquanto extends AbstractCommand {
 	private ArrayList<AbstractCommand> comandos;
 
     public CommandEnquanto(String condicao, ArrayList<AbstractCommand> comandos) {
-        this.condicao = condicao
-        this.comandos = comandos
+        this.condicao = condicao;
+        this.comandos = comandos;
     }
 
     @Override

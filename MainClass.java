@@ -11,14 +11,11 @@ public class MainClass {
 		a= _key.nextDouble();
 		System.out.println("Digite B");
 		b= _key.nextDouble();
-		if (a<b) {
-c = a+b;}else {
-c = a-b;}
-
-		System.out.println("C e igual a ");
-		System.out.println(c);
-		d = c*a+b;
-		System.out.println("D e igual a ");
-		System.out.println(d);
+		while (a<b) {
+System.out.println("A = ");System.out.println(a);a = a+1;}
+		System.out.println("A = ");
+		System.out.println(a);
+		System.out.println("B = ");
+		System.out.println(b);
 	}
 }
