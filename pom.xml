@@ -15,6 +15,11 @@
             <artifactId>antlr4-runtime</artifactId>
             <version>4.7.1</version>
         </dependency>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.6.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -52,6 +57,7 @@
                 <configuration>
                     <mainClass>br.com.professorisidro.isilanguage.main.MainClass</mainClass>
                     <arguments>
+                        <argument>compile</argument>
                         <!-- Substituir o arquivo para ser compilado aqui -->
                         <argument>inputs/1_input.isi</argument>
                     </arguments>
