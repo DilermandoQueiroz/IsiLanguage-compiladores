@@ -6,16 +6,20 @@ public class MainClass {
 		double  b;
 		double  c;
 		double  d;
+		String  e;
 		System.out.println("Programa Teste");
 		System.out.println("Digite A");
 		a= _key.nextDouble();
 		System.out.println("Digite B");
 		b= _key.nextDouble();
-		while (a<b) {
-System.out.println("A = ");System.out.println(a);a = a+1;}
-		System.out.println("A = ");
-		System.out.println(a);
-		System.out.println("B = ");
-		System.out.println(b);
+		if (a<b) {
+c = a+b;}else {
+c = a-b;}
+
+		System.out.println("C e igual a ");
+		System.out.println(c);
+		d = c*a+b;
+		System.out.println("D e igual a ");
+		System.out.println(d);
 	}
 }

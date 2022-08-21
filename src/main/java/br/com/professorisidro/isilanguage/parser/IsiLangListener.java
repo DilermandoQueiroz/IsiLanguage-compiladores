@@ -4,6 +4,7 @@ package br.com.professorisidro.isilanguage.parser;
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
 	import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
+	import br.com.professorisidro.isilanguage.datastructures.IsiConstants;
 	import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
 	import br.com.professorisidro.isilanguage.ast.IsiProgram;
 	import br.com.professorisidro.isilanguage.ast.AbstractCommand;

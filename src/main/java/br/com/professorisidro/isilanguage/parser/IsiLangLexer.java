@@ -4,6 +4,7 @@ package br.com.professorisidro.isilanguage.parser;
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
 	import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
+	import br.com.professorisidro.isilanguage.datastructures.IsiConstants;
 	import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
 	import br.com.professorisidro.isilanguage.ast.IsiProgram;
 	import br.com.professorisidro.isilanguage.ast.AbstractCommand;
@@ -98,6 +99,7 @@ public class IsiLangLexer extends Lexer {
 		private String _varValue;
 		private IsiSymbolTable symbolTable = new IsiSymbolTable();
 		private IsiSymbol symbol;
+		private Stack<ArrayList<Integer>> _types = new Stack<ArrayList<Integer>>();
 
 		private IsiProgram program = new IsiProgram();
 		private ArrayList<AbstractCommand> curThread;
@@ -113,6 +115,28 @@ public class IsiLangLexer extends Lexer {
 		public void verificaId(String id) {
 			if (!symbolTable.exists(id)) {
 				throw new IsiSemanticException("Symbol " + id + " not declared");
+			}
+
+			if (!_types.isEmpty()) {
+				IsiVariable variable = (IsiVariable) symbolTable.get(id);
+				_types.peek().add(variable.getType());
+			}
+		}
+
+		public void verifyTypes(String msg) {
+			boolean valid = true;
+			ArrayList<Integer> types = _types.pop();
+			int expectedType = types.get(0);
+			for (int type : types) {
+				valid &= type == expectedType;
+			}
+
+			if (!valid) {
+				throw new IsiSemanticException("Unmatching types at " + msg);
+			}
+
+			if (!_types.isEmpty()) {
+				_types.peek().add(expectedType);
 			}
 		}
 		

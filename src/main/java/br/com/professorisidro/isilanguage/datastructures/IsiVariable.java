@@ -1,5 +1,8 @@
 package br.com.professorisidro.isilanguage.datastructures;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class IsiVariable extends IsiSymbol {
 
 	public static final int NUMBER = 0;

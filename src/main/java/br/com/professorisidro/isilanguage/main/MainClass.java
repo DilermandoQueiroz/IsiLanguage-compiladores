@@ -1,5 +1,7 @@
 package br.com.professorisidro.isilanguage.main;
 
+import java.util.Stack;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -44,5 +46,4 @@ public class MainClass {
 			System.err.println("ERROR " + ex.getMessage());
 		}
 	}
-
 }

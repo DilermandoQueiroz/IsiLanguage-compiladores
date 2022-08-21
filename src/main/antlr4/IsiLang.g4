@@ -4,6 +4,7 @@ grammar IsiLang;
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
 	import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
 	import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
+	import br.com.professorisidro.isilanguage.datastructures.IsiConstants;
 	import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
 	import br.com.professorisidro.isilanguage.ast.IsiProgram;
 	import br.com.professorisidro.isilanguage.ast.AbstractCommand;
@@ -22,6 +23,7 @@ grammar IsiLang;
 	private String _varValue;
 	private IsiSymbolTable symbolTable = new IsiSymbolTable();
 	private IsiSymbol symbol;
+	private Stack<ArrayList<Integer>> _types = new Stack<ArrayList<Integer>>();
 
 	private IsiProgram program = new IsiProgram();
 	private ArrayList<AbstractCommand> curThread;
@@ -37,6 +39,28 @@ grammar IsiLang;
 	public void verificaId(String id) {
 		if (!symbolTable.exists(id)) {
 			throw new IsiSemanticException("Symbol " + id + " not declared");
+		}
+
+		if (!_types.isEmpty()) {
+			IsiVariable variable = (IsiVariable) symbolTable.get(id);
+			_types.peek().add(variable.getType());
+		}
+	}
+
+	public void verifyTypes(String msg) {
+		boolean valid = true;
+		ArrayList<Integer> types = _types.pop();
+		int expectedType = types.get(0);
+		for (int type : types) {
+			valid &= type == expectedType;
+		}
+
+		if (!valid) {
+			throw new IsiSemanticException("Unmatching types at " + msg);
+		}
+
+		if (!_types.isEmpty()) {
+			_types.peek().add(expectedType);
 		}
 	}
 	
@@ -129,23 +153,32 @@ cmdescrita:
 
 cmdattrib:
 	ID {
+		_types.push(new ArrayList<Integer>());
 		verificaId(_input.LT(-1).getText());
         _exprID = _input.LT(-1).getText();
 	}
 	ATTR { _exprContent = ""; }
 	expr
 	DOT {
+		verifyTypes("assignment of " + _exprID + " := " + _exprContent);
+
 		CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
 		stack.peek().add(cmd);
 	};
 
 cmdselecao:
 	'se'
-	AP { _exprContent = ""; }
+	AP { 
+		_exprContent = ""; 
+		_types.push(new ArrayList<Integer>());
+	}
 	expr
 	OPREL { _exprContent += _input.LT(-1).getText(); }
 	expr
-	FP { _exprDecision = _exprContent; }
+	FP {
+		_exprDecision = _exprContent;
+		verifyTypes("expression " + _exprDecision);
+	}
 	'entao'
 	ACH {
 		curThread = new ArrayList<AbstractCommand>(); 
@@ -168,12 +201,18 @@ cmdselecao:
 	)?;
 
 cmdenquanto:
-	'enquanto' { _exprContent = ""; }
-	AP
+	'enquanto'
+	AP { 
+		_exprContent = ""; 
+		_types.push(new ArrayList<Integer>());
+	}
 	expr
 	OPREL { _exprContent += _input.LT(-1).getText(); }
 	expr
-	FP { _exprDecision = _exprContent; }
+	FP {
+		_exprDecision = _exprContent;
+		verifyTypes("expression " + _exprDecision);
+	}
 	ACH {
 		curThread = new ArrayList<AbstractCommand>(); 
 		stack.push(curThread);
@@ -187,15 +226,27 @@ cmdenquanto:
 	;
 
 expr:
-	termo (OP { _exprContent += _input.LT(-1).getText();} termo)*;
+	{ _types.push(new ArrayList<Integer>()); }
+	termo
+	(
+		OP { _exprContent += _input.LT(-1).getText();} 
+		termo
+	)*
+	{ verifyTypes("expression " + _exprContent); };
 
 termo:
-	ID { 
+	ID {
 		verificaId(_input.LT(-1).getText());
 		_exprContent += _input.LT(-1).getText();
 	}
-	| NUMBER { _exprContent += _input.LT(-1).getText(); }
-	| TEXT { _exprContent += _input.LT(-1).getText(); };
+	| NUMBER {
+		_exprContent += _input.LT(-1).getText();
+		_types.peek().add(IsiVariable.NUMBER);
+	}
+	| TEXT {
+		_exprContent += _input.LT(-1).getText();
+		_types.peek().add(IsiVariable.TEXT);
+	};
 
 AP: '(';
 
