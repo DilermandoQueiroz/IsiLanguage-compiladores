@@ -7,7 +7,7 @@
 - [x] Possuir 2 tipos de dados (pelo menos 1 String)  
 - [x] Possuir a instrução de decisão (if/else)
 - [x] Pelo menos 1 estrutura de repetição
-- [ ] Verificar Atribuições com compatibilidade de tipos (semântica)  
+- [x] Verificar Atribuições com compatibilidade de tipos (semântica)  
 - [x] Possuir operações de Entrada e Saída
 - [x] Aceitar números decimais  
 - [x] Verificar declaração de variávies (não usar variáveis que não foram declaradas)
@@ -57,7 +57,7 @@ Para executar o projeto, basta realizar o comando `mvn exec:java`. O arquivo que
                     <mainClass>br.com.professorisidro.isilanguage.main.MainClass</mainClass>
                     <arguments>
                         <!-- Substituir o arquivo para ser compilado aqui -->
-                        <argument>input2.isi</argument>
+                        <argument>inputs/1_input.isi</argument>
                     </arguments>
                 </configuration>
                 ...

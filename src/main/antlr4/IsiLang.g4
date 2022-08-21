@@ -21,6 +21,7 @@ grammar IsiLang;
 	private int _tipo;
 	private String _varName;
 	private String _varValue;
+	private String _operator;
 	private IsiSymbolTable symbolTable = new IsiSymbolTable();
 	private IsiSymbol symbol;
 	private Stack<ArrayList<Integer>> _types = new Stack<ArrayList<Integer>>();
@@ -63,6 +64,35 @@ grammar IsiLang;
 			_types.peek().add(expectedType);
 		}
 	}
+
+	public void verifyOperator() {
+		ArrayList<Integer> types = _types.peek();
+		int len = types.size();
+		if (len < 2) return;
+
+		int type1 = types.get(len - 1);
+		int type2 = types.get(len - 2);
+
+		if (type1 != type2) return;
+
+		if (!IsiConstants.OP_PER_TYPE.get(type1).contains(_operator)) {
+			String t = IsiConstants.NAME_PER_TYPE.get(type1);
+			String msg = String.format("Invalid operator '%s' for type '%s' in expression %s",
+				_operator, t, _exprContent);
+			throw new IsiSemanticException(msg);
+		}
+	}
+
+	public void addVariable(String variable) {
+		_varName = variable;
+		_varValue = null;
+		if (!symbolTable.exists(_varName)) {
+			symbol = new IsiVariable(_varName, _tipo, _varValue);
+			symbolTable.add(symbol);
+		} else {
+			throw new IsiSemanticException("Symbol "+_varName+" already declared");
+		}
+	}
 	
 	public void exibeComandos() {
 		for (AbstractCommand c : program.getComandos()) {
@@ -89,28 +119,10 @@ decl: (declaravar)+;
 
 declaravar:
 	tipo 
-	ID {
-		_varName = _input.LT(-1).getText();
-		_varValue = null;
-		symbol = new IsiVariable(_varName, _tipo, _varValue);
-		if (!symbolTable.exists(_varName)) {
-			symbolTable.add(symbol);	
-		} else {
-			throw new IsiSemanticException("Symbol "+_varName+" already declared");
-		}
-	}
+	ID { addVariable(_input.LT(-1).getText()); }
 	(
 		VIR
-		ID {
-			_varName = _input.LT(-1).getText();
-			_varValue = null;
-			symbol = new IsiVariable(_varName, _tipo, _varValue);
-			if (!symbolTable.exists(_varName)) {
-				symbolTable.add(symbol);	
-			} else {
-				throw new IsiSemanticException("Symbol "+_varName+" already declared");
-			}
-		}
+		ID { addVariable(_input.LT(-1).getText()); }
 	)*
 	DOT;
 
@@ -144,10 +156,10 @@ cmdleitura:
 cmdescrita:
 	'escreva'
 	AP { _exprContent = ""; }
-	expr { _writeID = _input.LT(-1).getText(); }
+	expr
 	FP
 	DOT {
-    	CommandEscrita cmd = new CommandEscrita(_writeID);
+    	CommandEscrita cmd = new CommandEscrita(_exprContent);
         stack.peek().add(cmd);
 	};
 
@@ -229,8 +241,12 @@ expr:
 	{ _types.push(new ArrayList<Integer>()); }
 	termo
 	(
-		OP { _exprContent += _input.LT(-1).getText();} 
+		OP {
+			_operator = _input.LT(-1).getText();
+			_exprContent += _operator;
+		} 
 		termo
+		{ verifyOperator(); }
 	)*
 	{ verifyTypes("expression " + _exprContent); };
 

@@ -97,6 +97,7 @@ public class IsiLangLexer extends Lexer {
 		private int _tipo;
 		private String _varName;
 		private String _varValue;
+		private String _operator;
 		private IsiSymbolTable symbolTable = new IsiSymbolTable();
 		private IsiSymbol symbol;
 		private Stack<ArrayList<Integer>> _types = new Stack<ArrayList<Integer>>();
@@ -137,6 +138,35 @@ public class IsiLangLexer extends Lexer {
 
 			if (!_types.isEmpty()) {
 				_types.peek().add(expectedType);
+			}
+		}
+
+		public void verifyOperator() {
+			ArrayList<Integer> types = _types.peek();
+			int len = types.size();
+			if (len < 2) return;
+
+			int type1 = types.get(len - 1);
+			int type2 = types.get(len - 2);
+
+			if (type1 != type2) return;
+
+			if (!IsiConstants.OP_PER_TYPE.get(type1).contains(_operator)) {
+				String t = IsiConstants.NAME_PER_TYPE.get(type1);
+				String msg = String.format("Invalid operator '%s' for type '%s' in expression %s",
+					_operator, t, _exprContent);
+				throw new IsiSemanticException(msg);
+			}
+		}
+
+		public void addVariable(String variable) {
+			_varName = variable;
+			_varValue = null;
+			if (!symbolTable.exists(_varName)) {
+				symbol = new IsiVariable(_varName, _tipo, _varValue);
+				symbolTable.add(symbol);
+			} else {
+				throw new IsiSemanticException("Symbol "+_varName+" already declared");
 			}
 		}
 		
