@@ -13,6 +13,7 @@ grammar IsiLang;
 	import br.com.professorisidro.isilanguage.ast.CommandAtribuicao;
 	import br.com.professorisidro.isilanguage.ast.CommandDecisao;
 	import br.com.professorisidro.isilanguage.ast.CommandEnquanto;
+	import br.com.professorisidro.isilanguage.helper.IsiWarning;
 	import java.util.ArrayList;
 	import java.util.Stack;
 }
@@ -98,6 +99,14 @@ grammar IsiLang;
 		for (AbstractCommand c : program.getComandos()) {
 			System.out.println(c);
 		}
+	}
+
+	public ArrayList<String> warnings() {
+		ArrayList<String> warningList = new ArrayList<String>();
+		for (IsiSymbol symbol : symbolTable.notUsedSymbols()) {
+			warningList.add ("A variavel " + symbol.getName() + " foi declarada e não utilizada.");
+		}
+		return warningList;
 	}
 	
 	public void generateCode() {
