@@ -1,14 +1,6 @@
 package br.com.professorisidro.isilanguage.main;
 
-import java.util.Stack;
-
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-
 import br.com.professorisidro.isilanguage.cli.IsiCompiler;
-import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
-import br.com.professorisidro.isilanguage.parser.IsiLangLexer;
-import br.com.professorisidro.isilanguage.parser.IsiLangParser;
 import picocli.CommandLine;
 
 /* esta é a classe que é responsável por criar a interação com o usuário
