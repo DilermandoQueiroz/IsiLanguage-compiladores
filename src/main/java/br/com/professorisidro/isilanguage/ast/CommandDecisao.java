@@ -39,4 +39,16 @@ public class CommandDecisao extends AbstractCommand {
 				+ "]";
 	}
 
+	public String getCondition() {
+		return condition;
+	}
+
+	public ArrayList<AbstractCommand> getListaTrue() {
+		return listaTrue;
+	}
+
+	public ArrayList<AbstractCommand> getListaFalse() {
+		return listaFalse;
+	}
+
 }

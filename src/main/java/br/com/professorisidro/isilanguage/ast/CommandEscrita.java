@@ -18,4 +18,8 @@ public class CommandEscrita extends AbstractCommand {
 		return "CommandEscrita [id=" + id + "]";
 	}
 
+	public String getId() {
+		return id;
+	}
+
 }

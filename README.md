@@ -23,10 +23,10 @@
 
 ### Elementos extraordinários
 
-- [ ] Criar um interpretador a partir da AST
+- [x] Criar um interpretador a partir da AST
 - [ ] Criar um editor com Highlights de palavras reservadas (editor Desktop)
 - [ ] Criar um editor Web para o código
-- [ ] Tornar o compilador um Webservice para receber programas e enviar respostas de possíveis erros
+- [x] Tornar o compilador um Webservice para receber programas e enviar respostas de possíveis erros
 
 ## Pré-requisitos
 

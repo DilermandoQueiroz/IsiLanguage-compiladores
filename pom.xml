@@ -4,6 +4,18 @@
     <groupId>br.com.professorisidro</groupId>
     <artifactId>isilanguage</artifactId>
     <version>1.0.0</version>
+    <repositories>
+        <repository>
+            <id>maven-restlet</id>
+            <name>Restlet repository</name>
+            <url>https://maven.restlet.talend.com</url>
+        </repository>
+    </repositories>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <restlet-version>2.4.3</restlet-version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.antlr</groupId>
@@ -14,6 +26,26 @@
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
             <version>4.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jse</groupId>
+            <artifactId>org.restlet</artifactId>
+            <version>${restlet-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jse</groupId>
+            <artifactId>org.restlet.ext.jackson</artifactId>
+            <version>${restlet-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet.ext.fileupload</artifactId>
+            <version>3.0-M1</version>
         </dependency>
     </dependencies>
     <build>
@@ -52,6 +84,7 @@
                 <configuration>
                     <mainClass>br.com.professorisidro.isilanguage.main.MainClass</mainClass>
                     <arguments>
+                        <argument>compile</argument>
                         <!-- Substituir o arquivo para ser compilado aqui -->
                         <argument>inputs/1_input.isi</argument>
                     </arguments>
