@@ -12,6 +12,8 @@
         </repository>
     </repositories>
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <restlet-version>2.4.3</restlet-version>
     </properties>
     <dependencies>
@@ -39,6 +41,11 @@
             <groupId>org.restlet.jse</groupId>
             <artifactId>org.restlet.ext.jackson</artifactId>
             <version>${restlet-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet.ext.fileupload</artifactId>
+            <version>3.0-M1</version>
         </dependency>
     </dependencies>
     <build>
