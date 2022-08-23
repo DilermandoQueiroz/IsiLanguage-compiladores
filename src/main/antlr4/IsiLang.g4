@@ -99,6 +99,14 @@ grammar IsiLang;
 			System.out.println(c);
 		}
 	}
+
+	public ArrayList<AbstractCommand> getComandos() {
+		return program.getComandos();
+	}
+
+	public IsiSymbolTable getSymbolTable() {
+		return symbolTable;
+	}
 	
 	public void generateCode() {
 		program.generateTarget();

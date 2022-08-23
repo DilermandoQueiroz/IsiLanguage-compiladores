@@ -17,17 +17,14 @@ public class CompileCommand implements Runnable {
 
     public void run() {
         try {
-            IsiLangLexer lexer;
-            IsiLangParser parser;
-
             // leio o arquivo "input.isi" e isso é entrada para o Analisador Lexico
-            lexer = new IsiLangLexer(CharStreams.fromFileName(program));
+            IsiLangLexer lexer = new IsiLangLexer(CharStreams.fromFileName(program));
 
             // crio um "fluxo de tokens" para passar para o PARSER
             CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 
             // crio meu parser a partir desse tokenStream
-            parser = new IsiLangParser(tokenStream);
+            IsiLangParser parser = new IsiLangParser(tokenStream);
 
             parser.prog();
 
@@ -43,4 +40,5 @@ public class CompileCommand implements Runnable {
             System.err.println("ERROR " + ex.getMessage());
         }
     }
+
 }

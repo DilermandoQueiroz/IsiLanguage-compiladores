@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CommandEnquanto extends AbstractCommand {
 
     private String condicao;
-	private ArrayList<AbstractCommand> comandos;
+    private ArrayList<AbstractCommand> comandos;
 
     public CommandEnquanto(String condicao, ArrayList<AbstractCommand> comandos) {
         this.condicao = condicao;
@@ -18,8 +18,8 @@ public class CommandEnquanto extends AbstractCommand {
         str.append("while (" + condicao + ") {\n");
 
         for (AbstractCommand cmd : comandos) {
-			str.append(cmd.generateJavaCode());
-		}
+            str.append(cmd.generateJavaCode());
+        }
 
         str.append("}");
 
@@ -30,4 +30,13 @@ public class CommandEnquanto extends AbstractCommand {
     public String toString() {
         return "CommandEnquanto [condicao=" + condicao + ", comandos=" + comandos + "]";
     }
+
+    public String getCondicao() {
+        return condicao;
+    }
+
+    public ArrayList<AbstractCommand> getComandos() {
+        return comandos;
+    }
+
 }

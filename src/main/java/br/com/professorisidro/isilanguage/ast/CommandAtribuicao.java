@@ -20,4 +20,12 @@ public class CommandAtribuicao extends AbstractCommand {
 		return "CommandAtribuicao [id=" + id + ", expr=" + expr + "]";
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public String getExpr() {
+		return expr;
+	}
+
 }

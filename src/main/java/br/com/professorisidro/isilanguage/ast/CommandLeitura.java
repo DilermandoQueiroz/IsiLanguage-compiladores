@@ -22,4 +22,12 @@ public class CommandLeitura extends AbstractCommand {
 		return "CommandLeitura [id=" + id + "]";
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public IsiVariable getVar() {
+		return var;
+	}
+
 }
