@@ -1,0 +1,10 @@
+programa
+	
+	boolean a, b.
+	
+	leia(a).
+	leia(b).
+	
+	escreva(a && b).
+	
+fimprog.

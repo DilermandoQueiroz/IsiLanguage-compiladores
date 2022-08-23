@@ -145,7 +145,8 @@ declaravar:
 
 tipo:
 	'numero' { _tipo = IsiVariable.NUMBER; }
-	| 'texto' { _tipo = IsiVariable.TEXT; };
+	| 'texto' { _tipo = IsiVariable.TEXT; }
+	| 'boolean' { _tipo = IsiVariable.BOOLEAN; };
 
 bloco:
 	{ 
@@ -279,6 +280,10 @@ termo:
 	| TEXT {
 		_exprContent += _input.LT(-1).getText();
 		_types.peek().add(IsiVariable.TEXT);
+	}
+	| BOOLEAN {
+		_exprContent += _input.LT(-1).getText();
+		_types.peek().add(IsiVariable.BOOLEAN);		
 	};
 
 AP: '(';
@@ -287,7 +292,7 @@ FP: ')';
 
 DOT: '.';
 
-OP: '+' | '-' | '*' | '/';
+OP: '+' | '-' | '*' | '/' | '&&' | '||';
 
 ATTR: ':=';
 
@@ -302,6 +307,8 @@ OPREL: '>' | '<' | '>=' | '<=' | '==' | '!=';
 ID: [a-z] ([a-z] | [A-Z] | [0-9])*;
 
 NUMBER: [0-9]+ ('.' [0-9]+)?;
+
+BOOLEAN: 'true' | 'false';
 
 TEXT: '"' (~["\r\n])* '"';
 

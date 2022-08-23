@@ -1,12 +1,12 @@
 programa
 	
-	numero a, b;
-	texto t1, t2;
+	numero a, b.
+	texto t1, t2.
 	
-	leia(a);
-	leia(t1);
+	leia(a).
+	leia(t1).
 	
-	escreva(a);
-	escreva(t1);
+	escreva(a).
+	escreva(t1).
 	
-fimprog;
+fimprog.
