@@ -3,6 +3,9 @@ package br.com.professorisidro.isilanguage.cli;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -12,6 +15,7 @@ import br.com.professorisidro.isilanguage.ast.CommandDecisao;
 import br.com.professorisidro.isilanguage.ast.CommandEnquanto;
 import br.com.professorisidro.isilanguage.ast.CommandEscrita;
 import br.com.professorisidro.isilanguage.ast.CommandLeitura;
+import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
 import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
 import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
 import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
@@ -25,6 +29,9 @@ public class InterpretCommand implements Runnable {
 
     @Parameters(arity = "1", paramLabel = "<programPath>", description = "path to the program to be interpreted")
     private String program;
+
+    private final ScriptEngineManager mgr = new ScriptEngineManager();
+    private final ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
     public void run() {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -50,7 +57,7 @@ public class InterpretCommand implements Runnable {
             if (acmd instanceof CommandAtribuicao) {
                 CommandAtribuicao cmd = (CommandAtribuicao) acmd;
                 IsiVariable variable = (IsiVariable) table.get(cmd.getId());
-                Object value = eval(cmd.getExpr());
+                Object value = eval(table, cmd.getExpr());
 
                 switch (variable.getType()) {
                     case IsiVariable.NUMBER:
@@ -66,7 +73,7 @@ public class InterpretCommand implements Runnable {
 
             } else if (acmd instanceof CommandEscrita) {
                 CommandEscrita cmd = (CommandEscrita) acmd;
-                System.out.println(eval(cmd.getId()));
+                System.out.println(eval(table, cmd.getId()));
             } else if (acmd instanceof CommandLeitura) {
                 CommandLeitura cmd = (CommandLeitura) acmd;
                 IsiVariable variable = (IsiVariable) table.get(cmd.getId());
@@ -83,24 +90,34 @@ public class InterpretCommand implements Runnable {
                 }
             } else if (acmd instanceof CommandDecisao) {
                 CommandDecisao cmd = (CommandDecisao) acmd;
-                boolean result = (boolean) eval(cmd.getCondition());
+                boolean result = (boolean) eval(table, cmd.getCondition());
                 if (result)
                     interpret(table, cmd.getListaTrue(), scanner);
                 else
                     interpret(table, cmd.getListaFalse(), scanner);
             } else if (acmd instanceof CommandEnquanto) {
                 CommandEnquanto cmd = (CommandEnquanto) acmd;
-                boolean result = (boolean) eval(cmd.getCondicao());
+                boolean result = (boolean) eval(table, cmd.getCondicao());
                 while (result) {
                     interpret(table, cmd.getComandos(), scanner);
-                    result = (boolean) eval(cmd.getCondicao());
+                    result = (boolean) eval(table, cmd.getCondicao());
                 }
             }
         }
     }
 
-    private Object eval(String expr) {
-        return expr;
+    private Object eval(IsiSymbolTable table, String expr) throws Exception {
+        StringBuilder expression = new StringBuilder();
+        for (IsiSymbol symbol : table.getAll()) {
+            if (symbol instanceof IsiVariable) {
+                IsiVariable variable = (IsiVariable) symbol;
+                String declaration = String.format("var %s = %s;", variable.getName(), variable.getValue());
+                expression.append(declaration);
+            }
+        }
+        expression.append(expr);
+
+        return engine.eval(expression.toString());
     }
 
 }
