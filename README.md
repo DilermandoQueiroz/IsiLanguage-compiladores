@@ -11,7 +11,7 @@
 - [x] Possuir operações de Entrada e Saída
 - [x] Aceitar números decimais  
 - [x] Verificar declaração de variávies (não usar variáveis que não foram declaradas)
-- [ ] Verificar se há variáveis declaradas e não-utilizadas (warning)
+- [x] Verificar se há variáveis declaradas e não-utilizadas (warning)
 - [x] Geração de pelo menos 1 linguagem destino (C/Java/Python)
 
 ### Elementos adicionais
