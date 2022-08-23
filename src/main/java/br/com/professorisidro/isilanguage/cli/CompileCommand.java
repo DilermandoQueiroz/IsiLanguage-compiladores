@@ -1,9 +1,12 @@
 package br.com.professorisidro.isilanguage.cli;
 
+import java.util.ArrayList;
+
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
+import br.com.professorisidro.isilanguage.helper.IsiWarning;
 import br.com.professorisidro.isilanguage.parser.IsiLangLexer;
 import br.com.professorisidro.isilanguage.parser.IsiLangParser;
 import picocli.CommandLine.Command;
@@ -27,6 +30,9 @@ public class CompileCommand implements Runnable {
             IsiLangParser parser = new IsiLangParser(tokenStream);
 
             parser.prog();
+
+            ArrayList<String> warningList = parser.warnings();
+            IsiWarning.printWarning(warningList);
 
             System.out.println("Compilation Successful");
 

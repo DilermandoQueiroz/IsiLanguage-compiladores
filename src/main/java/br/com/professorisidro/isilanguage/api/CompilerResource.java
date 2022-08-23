@@ -1,6 +1,6 @@
 package br.com.professorisidro.isilanguage.api;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +45,7 @@ public class CompilerResource extends ServerResource {
     }
 
     private Representation runCompiler(FileItem file) {
+        List<Message> messages = new ArrayList<>();
         try {
             IsiLangLexer lexer = new IsiLangLexer(CharStreams.fromStream(file.getInputStream()));
             CommonTokenStream tokenStream = new CommonTokenStream(lexer);
@@ -52,14 +53,20 @@ public class CompilerResource extends ServerResource {
 
             parser.prog();
 
-            return response(Arrays.asList("Compilation successful"));
+            parser.warnings().stream().map((s) -> new Message(Message.WARNING, s)).forEach((m) -> messages.add(m));
+            messages.add(new Message(Message.INFO, "Compilation successful"));
+
+            return response(messages);
         } catch (IsiSemanticException e) {
             String msg = String.format("Semantic error - %s", e.getMessage());
-            return response(Arrays.asList(msg));
+            messages.add(new Message(Message.ERROR, msg));
+            return response(messages);
         } catch (Exception e) {
             e.printStackTrace();
+
             String msg = String.format("Error - %s", e.getMessage());
-            return response(Arrays.asList(msg));
+            messages.add(new Message(Message.ERROR, msg));
+            return response(messages);
         }
     }
 
@@ -67,7 +74,7 @@ public class CompilerResource extends ServerResource {
         return new JacksonRepresentation<Response>(new Response(error));
     }
 
-    private Representation response(List<String> messages) {
+    private Representation response(List<Message> messages) {
         return new JacksonRepresentation<Response>(new Response(messages));
     }
 

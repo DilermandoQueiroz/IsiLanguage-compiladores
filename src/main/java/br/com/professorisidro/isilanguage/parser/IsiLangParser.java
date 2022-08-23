@@ -187,7 +187,7 @@ public class IsiLangParser extends Parser {
 		public ArrayList<String> warnings() {
 			ArrayList<String> warningList = new ArrayList<String>();
 			for (IsiSymbol symbol : symbolTable.notUsedSymbols()) {
-				warningList.add ("A variavel " + symbol.getName() + " foi declarada e não utilizada.");
+				warningList.add ("Variable " + symbol.getName() + " was declared and is not being used");
 			}
 			return warningList;
 		}
