@@ -5,7 +5,7 @@ public abstract class IsiSymbol {
 	protected String name;
 	protected boolean isUsed;
 
-	public abstract String generateJavaCode();
+	public abstract String generateCode(String language);
 
 	public IsiSymbol(String name) {
 		this.name = name;

@@ -13,8 +13,14 @@ public class CommandLeitura extends AbstractCommand {
 	}
 
 	@Override
-	public String generateJavaCode() {
-		return id + "= _key." + (var.getType() == IsiVariable.NUMBER ? "nextDouble();" : "nextLine();");
+	public String generateCode(String language) {
+		if (language == "Java") {
+			return id + "= _key." + (var.getType() == IsiVariable.NUMBER ? "nextDouble();" : "nextLine();");
+		}
+		else if (language == "C") {
+			return "";
+		}
+		return "";
 	}
 
 	@Override

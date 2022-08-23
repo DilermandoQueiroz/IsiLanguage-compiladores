@@ -38,12 +38,20 @@ public class IsiVariable extends IsiSymbol {
 		return "IsiVariable [name=" + name + ", type=" + type + ", value=" + value + "]";
 	}
 
-	public String generateJavaCode() {
+	public String generateCode(String language) {
 		String str;
 		if (type == NUMBER) {
 			str = "double ";
 		} else {
-			str = "String ";
+			if (language == "Java") {
+				str = "String ";
+			}
+			else if (language == "C") {
+				str = "char[]";
+			}
+			else {
+				str = "";
+			}			
 		}
 		return str + " " + super.name + ";";
 	}

@@ -13,27 +13,50 @@ public class IsiProgram {
 	private ArrayList<AbstractCommand> comandos;
 	private String programName;
 
-	public void generateTarget() {
-		StringBuilder str = new StringBuilder();
-		str.append("import java.util.Scanner;\n");
-		str.append("public class MainClass {\n");
-		str.append("\tpublic static void main(String args[]) {\n");
-		str.append("\t\tScanner _key = new Scanner(System.in);\n");
-		for (IsiSymbol symbol : varTable.getAll()) {
-			str.append("\t\t" + symbol.generateJavaCode() + "\n");
-		}
-		for (AbstractCommand command : comandos) {
-			str.append("\t\t" + command.generateJavaCode() + "\n");
-		}
-		str.append("\t}\n");
-		str.append("}");
+	public void generateTarget(String language) {
+		if (language == "Java") {
+			StringBuilder str = new StringBuilder();
+			str.append("import java.util.Scanner;\n");
+			str.append("public class MainClass {\n");
+			str.append("\tpublic static void main(String args[]) {\n");
+			str.append("\t\tScanner _key = new Scanner(System.in);\n");
+			for (IsiSymbol symbol : varTable.getAll()) {
+				str.append("\t\t" + symbol.generateCode(language) + "\n");
+			}
+			for (AbstractCommand command : comandos) {
+				str.append("\t\t" + command.generateCode(language) + "\n");
+			}
+			str.append("\t}\n");
+			str.append("}");
 
-		try {
-			FileWriter fr = new FileWriter(new File("MainClass.java"));
-			fr.write(str.toString());
-			fr.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			try {
+				FileWriter fr = new FileWriter(new File("MainClass.java"));
+				fr.write(str.toString());
+				fr.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		else if (language == "C") {
+			StringBuilder str = new StringBuilder();
+			str.append("#include <stdio.h>\n");
+			str.append("int main() {\n");
+			for (IsiSymbol symbol : varTable.getAll()) {
+				str.append("\t\t" + symbol.generateCode(language) + "\n");
+			}
+			for (AbstractCommand command : comandos) {
+				str.append("\t\t" + command.generateCode(language) + "\n");
+			}
+			str.append("\t}\n");
+			str.append("}");
+
+			try {
+				FileWriter fr = new FileWriter(new File("MainClass.c"));
+				fr.write(str.toString());
+				fr.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 

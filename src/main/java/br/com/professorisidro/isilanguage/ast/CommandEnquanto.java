@@ -13,12 +13,12 @@ public class CommandEnquanto extends AbstractCommand {
     }
 
     @Override
-    public String generateJavaCode() {
+    public String generateCode(String language) {
         StringBuilder str = new StringBuilder();
         str.append("while (" + condicao + ") {\n");
 
         for (AbstractCommand cmd : comandos) {
-			str.append(cmd.generateJavaCode());
+			str.append(cmd.generateCode(language));
 		}
 
         str.append("}");

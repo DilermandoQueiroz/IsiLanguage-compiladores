@@ -9,8 +9,14 @@ public class CommandEscrita extends AbstractCommand {
 	}
 
 	@Override
-	public String generateJavaCode() {
-		return "System.out.println(" + id + ");";
+	public String generateCode(String language) {
+		if (language == "Java") {
+			return "System.out.println(" + id + ");";
+		}
+		else if (language == "C") {
+			return "print(" + id + ");";
+		}
+		return "";
 	}
 
 	@Override
