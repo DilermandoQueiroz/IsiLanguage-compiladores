@@ -17,7 +17,7 @@
 ### Elementos adicionais
 
 - [ ] Nova instrução para Switch/Case (escolha/caso)
-- [ ] Mais tipos de dados
+- [x] Mais tipos de dados
 - [ ] Inclusão de novos operadores (exponenciação, raiz quadrada, logaritmos)
 - [ ] Geração de código para mais de uma linguagem diferente
 
