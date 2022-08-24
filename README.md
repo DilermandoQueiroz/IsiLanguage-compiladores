@@ -2,6 +2,8 @@
 
 ## Checklist
 
+O vídeo explicativo do projeto pode ser acessado [aqui]();
+
 ### Elementos padrão
 
 - [x] Possuir 2 tipos de dados (pelo menos 1 String)  
@@ -64,3 +66,10 @@ Para executar o projeto, basta realizar o comando `mvn exec:java`. O arquivo que
 ```
 
 Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `mvn compile`, que automaticamente irá regerar os arquivos na pasta `parser` do projeto.
+
+## Participantes
+
+- Dilermando Queiroz Neto (RA: 11201722993)
+- Jonathan Takeshi Ywahashi (RA: 11201810503)
+- Natália Satie Motokubo Halker (RA: 11025613)
+- Yuri Neudine (RA: )

@@ -1,12 +1,14 @@
 programa
 
-numero a, b, c, d.
+numero a, b, c, d, e.
 
 escreva("Programa Teste").
 escreva ("Digite A").
 leia (a).
 escreva ("Digite B").
 leia (b).
+
+e := 10.50
 
 se (a<b) entao
 {
@@ -20,7 +22,7 @@ senao
 escreva ("C e igual a ").
 escreva (c).
 
-d := c * a + b.
+d := c * a + b - e.
 
 escreva ("D e igual a ").
 escreva (d).
