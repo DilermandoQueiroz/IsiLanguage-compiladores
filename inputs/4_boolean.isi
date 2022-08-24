@@ -2,9 +2,13 @@ programa
 	
 	boolean a, b.
 	
+	escreva("Teste boolean").
+
 	leia(a).
 	leia(b).
 	
+	escreva(a).
+	escreva(b).
 	escreva(a && b).
 	
 fimprog.

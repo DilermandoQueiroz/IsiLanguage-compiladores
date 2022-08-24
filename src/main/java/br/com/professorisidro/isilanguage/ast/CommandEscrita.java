@@ -18,11 +18,11 @@ public class CommandEscrita extends AbstractCommand {
 			return "System.out.println(" + id + ");";
 		} else if (language == "c") {
 			if (var.getType() == IsiVariable.NUMBER) {
-				return "printf(\"%lf\", " + id + ");";
+				return "printf(\"%lf\\n\", " + id + ");";
 			} else if (var.getType() == IsiVariable.TEXT) {
-				return "printf(\"%s\", " + id + ");";
+				return "printf(\"%s\\n\", " + id + ");";
 			} else if (var.getType() == IsiVariable.BOOLEAN) {
-				return "printf(\"%d\", " + id + ");";
+				return "printf(\"%d\\n\", " + id + ");";
 			}
 		}
 		return "";
