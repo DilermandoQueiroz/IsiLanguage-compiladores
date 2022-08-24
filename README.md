@@ -2,7 +2,7 @@
 
 ## Checklist
 
-O vídeo explicativo do projeto pode ser acessado [aqui]();
+O vídeo explicativo do projeto pode ser acessado [aqui]().
 
 ### Elementos padrão
 
@@ -66,6 +66,52 @@ Para executar o projeto, basta realizar o comando `mvn exec:java`. O arquivo que
 ```
 
 Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `mvn compile`, que automaticamente irá regerar os arquivos na pasta `parser` do projeto.
+
+Por fim, como o projeto está estruturado como uma CLI, ele também pode ser executado utilizando o script `run.sh` que se encontra na raíz do projeto, usando o formato `./run.sh <comando> <argumentos>`.
+
+### Comando `compile`
+
+O comando `compile` recebe como argumento o caminho do programa para ser compilado e retorna o resultado da compilação no próprio terminal. Um exemplo de execução deste comando pode ser visto abaixo:
+
+```bash
+$ ./run.sh compile inputs/4_boolean.isi 
+...
+Compilation Successful
+CommandEscrita [id="Teste boolean"]
+CommandLeitura [id=a]
+CommandLeitura [id=b]
+CommandEscrita [id=a]
+CommandEscrita [id=b]
+CommandEscrita [id=a&&b]
+```
+
+### Comando `server`
+
+O comando `server` não recebe argumentos e disponibiliza o compilador como um web service. Um exemplo de execução e utilização deste serviço pode ser visto abaixo:
+
+```bash
+$ ./run.sh server
+...
+Aug 24, 2022 12:03:12 AM org.restlet.engine.connector.NetServerHelper start
+INFO: Starting the internal [HTTP/1.1] server on port 8080
+
+# Em outro terminal.
+$ curl -F file=@inputs/1_input.isi localhost:8080/compile
+{"result":[{"type":"info","message":"Compilation successful"}],"error":null}
+```
+
+### Comando `interpret`
+
+O comando `interpret` recebe como argumento o caminho do programa para ser interpretado e executa o programa no próprio terminal. Um exemplo de execução deste comando pode ser visto abaixo:
+
+```bash
+$ ./run.sh interpret inputs/1_input.isi 
+...
+Compilation Successful
+Programa Teste
+Digite A
+...
+```
 
 ## Participantes
 
