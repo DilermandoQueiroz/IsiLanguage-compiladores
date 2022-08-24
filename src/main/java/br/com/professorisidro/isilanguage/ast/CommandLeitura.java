@@ -20,7 +20,7 @@ public class CommandLeitura extends AbstractCommand {
 			if (var.getType() == IsiVariable.NUMBER) {
 				return "scanf(\"%lf\", &" + id + ");";
 			} else if (var.getType() == IsiVariable.TEXT) {
-				return "scanf\"%[^\n]s\", &" + id + ");";
+				return "scanf(\"%[^\\n]s\", &" + id + ");";
 			} else if (var.getType() == IsiVariable.BOOLEAN) {
 				return "scanf(\"%d\", &" + id + ");";
 			}
