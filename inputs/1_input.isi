@@ -8,7 +8,7 @@ leia (a).
 escreva ("Digite B").
 leia (b).
 
-e := 10.50
+e := 10.50.
 
 se (a<b) entao
 {
