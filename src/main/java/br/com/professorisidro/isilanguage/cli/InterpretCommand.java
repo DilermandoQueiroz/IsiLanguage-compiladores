@@ -66,7 +66,9 @@ public class InterpretCommand implements Runnable {
                     case IsiVariable.TEXT:
                         variable.setValue((String) value);
                         break;
-
+                    case IsiVariable.BOOLEAN:
+                        variable.setValue((boolean) value);
+                        break;
                     default:
                         throw new RuntimeException("Unknown variable type");
                 }
@@ -84,6 +86,9 @@ public class InterpretCommand implements Runnable {
                         break;
                     case IsiVariable.TEXT:
                         variable.setValue(scanner.nextLine());
+                        break;
+                    case IsiVariable.BOOLEAN:
+                        variable.setValue(scanner.nextBoolean());
                         break;
                     default:
                         throw new RuntimeException("Unknown variable type");
