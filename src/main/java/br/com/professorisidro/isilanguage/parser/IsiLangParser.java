@@ -201,7 +201,8 @@ public class IsiLangParser extends Parser {
 		}
 		
 		public void generateCode() {
-			program.generateTarget();
+			program.generateTarget("java");
+			program.generateTarget("c");
 		}
 
 	public IsiLangParser(TokenStream input) {
@@ -684,7 +685,9 @@ public class IsiLangParser extends Parser {
 			match(T__6);
 			setState(81);
 			match(AP);
-			 _exprContent = ""; 
+			 _exprContent = "";
+					 _types.push(new ArrayList<Integer>());
+				
 			setState(83);
 			expr();
 			setState(84);
@@ -692,8 +695,10 @@ public class IsiLangParser extends Parser {
 			setState(85);
 			match(DOT);
 
-			    	CommandEscrita cmd = new CommandEscrita(_exprContent);
+					IsiVariable var = new IsiVariable(_exprContent, _types.peek().get(0), null);
+			    	CommandEscrita cmd = new CommandEscrita(_exprContent, var);
 			        stack.peek().add(cmd);
+					_types.pop();
 				
 			}
 		}

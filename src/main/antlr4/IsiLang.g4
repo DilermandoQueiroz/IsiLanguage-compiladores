@@ -118,7 +118,8 @@ grammar IsiLang;
 	}
 	
 	public void generateCode() {
-		program.generateTarget();
+		program.generateTarget("java");
+		program.generateTarget("c");
 	}
 }
 
@@ -173,12 +174,16 @@ cmdleitura:
 
 cmdescrita:
 	'escreva'
-	AP { _exprContent = ""; }
+	AP { _exprContent = "";
+		 _types.push(new ArrayList<Integer>());
+	}
 	expr
 	FP
 	DOT {
-    	CommandEscrita cmd = new CommandEscrita(_exprContent);
+		IsiVariable var = new IsiVariable(_exprContent, _types.peek().get(0), null);
+    	CommandEscrita cmd = new CommandEscrita(_exprContent, var);
         stack.peek().add(cmd);
+		_types.pop();
 	};
 
 cmdattrib:

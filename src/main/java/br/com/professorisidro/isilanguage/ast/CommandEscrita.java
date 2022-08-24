@@ -1,16 +1,34 @@
 package br.com.professorisidro.isilanguage.ast;
 
+import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
+
 public class CommandEscrita extends AbstractCommand {
 
 	private String id;
+	private IsiVariable var;
 
-	public CommandEscrita(String id) {
+	public CommandEscrita(String id, IsiVariable var) {
 		this.id = id;
+		this.var = var;
 	}
 
 	@Override
-	public String generateJavaCode() {
-		return "System.out.println(" + id + ");";
+	public String generateCode(String language) {
+		if (language == "java") {
+			return "System.out.println(" + id + ");";
+		}
+		else if (language == "c") {
+			if (var.getType() == IsiVariable.NUMBER) {
+				return "printf(%d, " + id + ")";
+			}
+			else if (var.getType() == IsiVariable.TEXT) {
+				return "printf(%s, " + id + ")";
+			}
+			else if (var.getType() == IsiVariable.BOOLEAN) {
+				return "printf(%d, " + id + ")";
+			}
+		}
+		return "";
 	}
 
 	@Override

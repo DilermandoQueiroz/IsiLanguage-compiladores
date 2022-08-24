@@ -6,7 +6,6 @@ public class MainClass {
 		double  b;
 		double  c;
 		double  d;
-		String  e;
 		System.out.println("Programa Teste");
 		System.out.println("Digite A");
 		a= _key.nextDouble();

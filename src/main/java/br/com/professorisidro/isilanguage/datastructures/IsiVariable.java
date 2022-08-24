@@ -36,16 +36,32 @@ public class IsiVariable extends IsiSymbol {
 		return "IsiVariable [name=" + name + ", type=" + type + ", value=" + value + "]";
 	}
 
-	public String generateJavaCode() {
-		String str;
-		if (type == NUMBER) {
-			str = "double ";
-		} else if (type == TEXT) {
-			str = "String ";
-		} else {
-			str = "boolean ";
+	public String generateCode(String language) {
+		if (language == "java") {
+			String str;
+			if (type == NUMBER) {
+				str = "double ";
+			} else if (type == TEXT) {
+				str = "String ";
+			} else {
+				str = "boolean ";
+			}
+			return str + " " + super.name + ";";
 		}
-		return str + " " + super.name + ";";
+		else if (language == "c") {
+			String str;
+			if (type == NUMBER) {
+				str = "double ";
+				return str + " " + super.name + ";";
+			} else if (type == TEXT) {
+				str = "char[] ";
+				return "char " + super.name + "[99999999];";
+			} else {
+				str = "bool ";
+				return str + " " + super.name + ";";
+			}
+		}
+		return "";
 	}
 
 }

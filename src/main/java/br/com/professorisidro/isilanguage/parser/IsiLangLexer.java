@@ -194,7 +194,8 @@ public class IsiLangLexer extends Lexer {
 		}
 		
 		public void generateCode() {
-			program.generateTarget();
+			program.generateTarget("java");
+			program.generateTarget("c");
 		}
 
 
