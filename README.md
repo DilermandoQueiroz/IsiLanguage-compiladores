@@ -2,7 +2,7 @@
 
 ## Checklist
 
-O vídeo explicativo do projeto pode ser acessado [aqui]().
+O vídeo explicativo do projeto pode ser acessado [aqui](https://youtu.be/MbHHzlaTEXE).
 
 ### Elementos padrão
 
