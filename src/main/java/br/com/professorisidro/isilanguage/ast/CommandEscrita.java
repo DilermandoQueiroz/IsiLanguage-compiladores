@@ -16,16 +16,13 @@ public class CommandEscrita extends AbstractCommand {
 	public String generateCode(String language) {
 		if (language == "java") {
 			return "System.out.println(" + id + ");";
-		}
-		else if (language == "c") {
+		} else if (language == "c") {
 			if (var.getType() == IsiVariable.NUMBER) {
-				return "printf(%d, " + id + ")";
-			}
-			else if (var.getType() == IsiVariable.TEXT) {
-				return "printf(%s, " + id + ")";
-			}
-			else if (var.getType() == IsiVariable.BOOLEAN) {
-				return "printf(%d, " + id + ")";
+				return "printf(\"%lf\", " + id + ");";
+			} else if (var.getType() == IsiVariable.TEXT) {
+				return "printf(\"%s\", " + id + ");";
+			} else if (var.getType() == IsiVariable.BOOLEAN) {
+				return "printf(\"%d\", " + id + ");";
 			}
 		}
 		return "";

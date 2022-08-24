@@ -36,8 +36,7 @@ public class IsiProgram {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-		}
-		else if (language == "c") {
+		} else if (language == "c") {
 			StringBuilder str = new StringBuilder();
 			str.append("#include <stdio.h>\n");
 			str.append("#include <stdbool.h>\n");
@@ -48,7 +47,6 @@ public class IsiProgram {
 			for (AbstractCommand command : comandos) {
 				str.append("\t\t" + command.generateCode(language) + "\n");
 			}
-			str.append("\t}\n");
 			str.append("}");
 
 			try {
@@ -59,7 +57,7 @@ public class IsiProgram {
 				ex.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	public IsiSymbolTable getVarTable() {
