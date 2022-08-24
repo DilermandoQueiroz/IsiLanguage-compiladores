@@ -72,4 +72,4 @@ Para gerar novamente os arquivos referente ao ANTLR4, basta executar o comando `
 - Dilermando Queiroz Neto (RA: 11201722993)
 - Jonathan Takeshi Ywahashi (RA: 11201810503)
 - Natália Satie Motokubo Halker (RA: 11025613)
-- Yuri Neudine (RA: )
+- Yuri Neudine Tropeia (RA: 21005816)
